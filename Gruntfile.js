@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 files: [{
                     "expand": true,
                     "cwd": "src",
-                    "src": ["*.js"],
+                    "src": ["*.js", "!*.min.js"],
                     "dest": "build/transpiled",
                     "ext": ".js"
                 }]
@@ -35,9 +35,21 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        cssmin: {
+            target: {
+                files: [{
+                    expand: true,
+                    cwd: 'src',
+                    src: ['*.css', '!*.min.css'],
+                    dest: 'build/transpiled',
+                    ext: '.min.css'
+                }]
+            }
+        }
     });
 
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.registerTask("default", ["babel", "uglify"]);
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.registerTask("default", ["babel", "uglify", "cssmin"]);
 };

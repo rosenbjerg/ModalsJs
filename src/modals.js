@@ -1,60 +1,64 @@
 "use strict";
 
-let modals = (function () {
+let ModalsJs = (function () {
     let modalStack = [];
-
-    let warning = {
+    let _warning = {
         sure: "Are you sure you want to close this window?",
         yes: "Yes",
         no: "No"
     };
 
-    document.addEventListener("click", ev => {
-        if (ev.target.matches(".modalsjs-popupimage")){
-            let imgSrc = ev.target.dataset.imgSrc || ev.target.src;
-            openModalImage(imgSrc, ev.target.dataset.imgTitle, ev.target.dataset.imgDesc);
-        }
-    });
-
+    let modalContainer = createElement("div", "modalsjs-container");
     let modalBackBlur = createElement("div", "modalsjs-backblur");
-    modalBackBlur.addEventListener("click", closeModal);
+    modalBackBlur.addEventListener("click", close);
+    modalContainer.appendChild(modalBackBlur);
 
-    function openModal(html, options) {
-        let modal = createElement("div", "modalsjs-modalview");
-        modal.addEventListener("click", ev => {
-            if (ev.target.matches(".modalsjs-closebutton"))
-                closeModal();
-        });
-        if (!options || !options.hideClose)
-            modal.appendChild(createElement("span", "modalsjs-closebutton", "\u2716"));
-        modal.innerHTML += html;
-        modalStack.push({
-            type: "modal",
-            element: modal,
-            options
-        });
-        if (modalStack.length === 1)
-            document.body.appendChild(modalBackBlur);
-        document.body.appendChild(modal);
+    function initPopupImages(container, options) {
+        let images = Array.from(container.getElementsByTagName("img"))
+                        .filter(el => el.matches(".modalsjs-popupimage"));
+        for (let i = 0; i < images.length; i++){
+            images[i].addEventListener("click", ev => {
+                let imgSrc = ev.target.dataset.imgSrc || ev.target.src;
+                openImage(imgSrc, ev.target.dataset.imgTitle, ev.target.dataset.imgDesc);
+            })
+        }
+
     }
 
-    function openModalImage(src, title, desc) {
-        let html = "<div><img src='" + src + "' alt=''>";
-        if (title)
-            html += "<b class='modalsjs-modalimage-title'>" + title + "</b>";
-        if (desc)
-            html += "<span class='modalsjs-modalimage-desc'>" + desc + "</span>";
-        html += "</div>";
+    function open(html, options) {
+        let element = createElement("div", "modalsjs-view modalsjs-shadow modalsjs-bgc");
+        let modal = { type: "modal", element, options };
 
-        let modal = createElement("div", "modalsjs-modalimage", html);
-        modal.addEventListener("click", closeModal);
-        modalStack.push({
-            type: "modal",
-            element: modal
-        });
+        if (!options || !options.hideClose){
+            let close = createElement("div", "modalsjs-closebutton", "\u2716");
+            close.addEventListener("click", () => close(false, modal));
+            element.appendChild(close);
+        }
+        let content = createElement("div", "modalsjs-content");
+        content.innerHTML = html;
+        element.appendChild(content);
+        showModal(modal);
+    }
+
+    function openImage(src, title, desc) {
+        let html = `<img class="modalsjs-image modalsjs-shadow" src='${src}' alt='${title || ""}'><figcaption>`;
+        if (title)
+            html += `<div class='modalsjs-image-title'>${title}</div>`;
+        if (desc)
+            html += `<small class='modalsjs-image-desc'>${desc}</small>`;
+        html += "</figcaption>";
+
+        let element = createElement("figure", "modalsjs-view", html);
+        let modal = { type: "modal", element };
+        element.addEventListener("click", () => close(true, modal));
+        showModal(modal);
+    }
+
+    function showModal(modal) {
+        modalStack.push(modal);
         if (modalStack.length === 1)
-            document.body.appendChild(modalBackBlur);
-        document.body.appendChild(modal);
+            document.body.appendChild(modalContainer);
+        modalContainer.appendChild(modal.element);
     }
 
     function peekModal() {
@@ -63,72 +67,81 @@ let modals = (function () {
         return modalStack[modalStack.length - 1];
     }
 
-    function createElement(tag, cls, cnt) {
+    function createElement(tag, cls, html) {
         let element = document.createElement(tag);
-        element.classList.add(cls);
-        if (cnt) element.innerHTML = cnt;
+        element.className = cls;
+        if (html) element.innerHTML = html;
         return element;
     }
 
-    function warn(warningOptions) {
-        let html = warningOptions.custom ||
-            ("<b class='modalsjs-warning-text'>" + (warningOptions.sure || warning.sure) + "</b>" +
-                "<button class='modalsjs-warning-yes'>" + (warningOptions.yes || warning.yes) + "</button>" +
-                "<button class='modalsjs-warning-no'>" + (warningOptions.no || warning.no) + "</button>");
-        let modal = createElement("div", "modalsjs-modalview", html);
+    function removeModalFromStack(modal) {
+        for (let i = modalStack.length - 1; i >= 0; i--) {
+            if (modalStack[i] === modal){
+                modalStack.splice(i, 1);
+                return;
+            }
+        }
+    }
 
-        modal.addEventListener("click", (ev) => {
+    function warn(warningOptions, modal) {
+        let html = warningOptions.custom ||
+               ("<b class='modalsjs-warning-text'>" + (warningOptions.sure || _warning.sure) + "</b>" +
+                "<button class='modalsjs-warning-yes'>" + (warningOptions.yes || _warning.yes) + "</button>" +
+                "<button class='modalsjs-warning-no'>" + (warningOptions.no || _warning.no) + "</button>");
+        let element = createElement("div", "modalsjs-view modalsjs-shadow modalsjs-bgc", html);
+        let warning = { type: "warning", element };
+        element.addEventListener("click", (ev) => {
             if (ev.target.matches(".modalsjs-warning-yes")){
-                document.body.removeChild(modal);
-                modalStack.pop();
-                closeModal(true);
+                modalContainer.removeChild(element);
+                removeModalFromStack(warning);
+                close(true, modal);
             }
             else if (ev.target.matches(".modalsjs-warning-no")){
-                document.body.removeChild(modal);
-                modalStack.pop();
+                modalContainer.removeChild(element);
+                removeModalFromStack(warning);
             }
         });
-
-        modalStack.push({
-            type: "warning",
-            element: modal
-        });
-        document.body.appendChild(modal);
+        modalStack.push(warning);
+        modalContainer.appendChild(element);
     }
 
-    function closeModal(ignoreWarning) {
-        let modal = peekModal();
-        if (modal.type === "warning"){
-            document.body.removeChild(modal.element);
-            modalStack.pop();
-            modal = peekModal();
-        }
-
+    function handleOptions(ignoreWarning, modal) {
         if (ignoreWarning !== true && modal.options && modal.options.warning){
-            warn(modal.options.warningOptions || warning);
+            warn(modal.options.warningOptions || _warning, modal);
+            return false;
         }
-        else {
-            if (modal.options && modal.options.onClose)
-                modal.options.onClose();
-            document.body.removeChild(modal.element);
+        if (modal.options && modal.options.onClose)
+            modal.options.onClose();
+        return true;
+    }
+
+    function close(ignoreWarning, modal) {
+        let warning = peekModal();
+        if (warning.type === "warning"){
+            modalContainer.removeChild(warning.element);
             modalStack.pop();
+        }
+        modal = modal || peekModal();
+        if (handleOptions(ignoreWarning, modal)){
+            modalContainer.removeChild(modal.element);
+            removeModalFromStack(modal);
             if (modalStack.length === 0)
-                document.body.removeChild(modalBackBlur);
+                document.body.removeChild(modalContainer);
         }
     }
 
-    function closeAllModals() {
-        for (let i = 0; i < modalStack.length; i++){
-            document.body.removeChild(modalStack[i].element);
-        }
-        document.body.removeChild(modalBackBlur);
+    function closeAll() {
+        for (let i = 0; i < modalStack.length; i++)
+            modalContainer.removeChild(modalStack[i].element);
+        document.body.removeChild(modalContainer);
         modalStack = [];
     }
 
     return {
-        open: openModal,
-        openImage: openModalImage,
-        close: closeModal,
-        closeAll: closeAllModals
+        open,
+        openImage,
+        close,
+        closeAll,
+        initPopupImages
     }
 })();

@@ -1,6 +1,4 @@
-.modalsjs-backblur {
-    background-color: #0b0b0b;
-    opacity: 0.8;
+.modalsjs-container {
     position: fixed;
     z-index: 999;
     left: 0;
@@ -9,55 +7,50 @@
     bottom: 0;
 }
 
-.modalsjs-modalview {
-    z-index: 1000;
-    background-color: #E0E0E0;
-    border-radius: 2px;
+.modalsjs-backblur {
     position: fixed;
-    top: 50%;
+    background-color: #0b0b0b;
+    opacity: 0.8;
+    height: 100%;
+    width: 100%;
+}
+
+.modalsjs-view {
+    z-index: 1000;
+    position: fixed;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     left: 50%;
-    max-width: 90%;
-    max-height: 90%;
+    top: 50%;
     transform: translate(-50%, -50%);
+    padding: 10px;
+}
+figure.modalsjs-view {
+    margin: 0;
+}
+
+.modalsjs-shadow {
     -webkit-box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
     -moz-box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
     box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
-    padding: 15px;
 }
 
-
-.modalsjs-modalimage {
-    color: #F3F3F3;
-    z-index: 1000;
-    border-radius: 2px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    max-width: 90%;
-    max-height: 90%;
-    transform: translate(-50%, -50%);
-    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size:14px;
-    line-height:1.6;
-}
-.modalsjs-modalimage img {
+.modalsjs-image {
     display: block;
-    -webkit-box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
-    -moz-box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
-    box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
     cursor: zoom-out;
     margin: auto auto 5px;
+    border-radius: 2px;
 }
-.modalsjs-modalimage-title, .modalsjs-modalimage-desc {
-    display: block;
+.modalsjs-image-title, .modalsjs-image-desc {
+    color: #F3F3F3;
 }
 
 .modalsjs-closebutton {
+    margin-top: -5px;
+    margin-right: -5px;
+    margin-left: 50px;
     color: #9E9E9E;
     float: right;
     cursor: pointer;
-    margin-right: 3px;
-    text-decoration: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -72,13 +65,8 @@
     color: #616161;
 }
 
-.modalsjs-closewrapper {
-    width: 100%;
-}
-
 .modalsjs-warning-text {
     display: block;
-    font-family: Arial, serif;
     margin-bottom: 15px;
 }
 .modalsjs-warning-yes, .modalsjs-warning-no {
@@ -86,7 +74,14 @@
     margin-left: 8px;
 }
 
-.modalsjs-popupimage{
-    cursor: zoom-in;
+.modalsjs-content {
+    min-width: 300px;
+    min-height: 100px;
+}
+.modalsjs-bgc {
+    background-color: #E0E0E0;
 }
 
+.modalsjs-popupimage {
+    cursor: pointer;
+}
