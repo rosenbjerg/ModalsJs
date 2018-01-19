@@ -2,11 +2,11 @@ ModalsJs.open("<div class='modal'>Modal test</div>", {
     warning: true,
     hideClose: false,
     warningOptions: {
-        sure: "Er du sikker?",
-        yes: "Ja",
-        no: "Nej"
+        sure: "Close this window?",
+        yes: "Yes",
+        no: "No"
     },
-    onClose: () => console.log("han var sikker")
+    onClose: () => console.log("closed")
 });
 ModalsJs.initPopupImages(document.getElementById("img-container"), {
 

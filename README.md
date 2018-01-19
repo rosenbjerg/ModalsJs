@@ -7,6 +7,7 @@ Loading the library creates the object ModalsJs which has a number of functions:
 
 `openImage(src, title, desc)` opens a modal image view using the parameters. 
 
-`close(ignoreWarning)` closes the topmost modal view. If ignoreWarning === true
+`close(ignoreWarning)` closes the topmost modal view. 
+If `ignoreWarning === true` then warnings will be ignored.
 
-`closeAll()`
+`closeAll()` closes all modals and ignores warnings.
