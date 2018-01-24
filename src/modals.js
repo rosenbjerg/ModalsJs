@@ -30,9 +30,9 @@ let ModalsJs = (function () {
         let modal = { type: "modal", element, options };
 
         if (!options || !options.hideClose){
-            let close = createElement("div", "modalsjs-closebutton", "\u2716");
-            close.addEventListener("click", () => close(false, modal));
-            element.appendChild(close);
+            let closeBtn = createElement("div", "modalsjs-closebutton", "\u2716");
+            closeBtn.addEventListener("click", () => close(false, modal));
+            element.appendChild(closeBtn);
         }
         let content = createElement("div", "modalsjs-content");
         content.innerHTML = html;
