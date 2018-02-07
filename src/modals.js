@@ -3,14 +3,14 @@
 let ModalsJs = (function () {
     let modalStack = [];
     let _warning = {
-        sure: "Are you sure you want to close this window?",
-        yes: "Yes",
-        no: "No"
+        title: "Are you sure you want to close this window?",
+        accept: "Yes",
+        reject: "No"
     };
 
     let modalContainer = createElement("div", "modalsjs-container");
     let modalBackBlur = createElement("div", "modalsjs-backblur");
-    modalBackBlur.addEventListener("click", close);
+    modalBackBlur.addEventListener("click", () => close());
     modalContainer.appendChild(modalBackBlur);
 
     function initPopupImages(container, options) {
@@ -38,6 +38,10 @@ let ModalsJs = (function () {
         content.innerHTML = html;
         element.appendChild(content);
         showModal(modal);
+        let focusTarget = element.querySelector("input,select,textarea");
+        if (focusTarget)
+            focusTarget.focus();
+        return modal;
     }
 
     function openImage(src, title, desc) {
@@ -52,6 +56,7 @@ let ModalsJs = (function () {
         let modal = { type: "modal", element };
         element.addEventListener("click", () => close(true, modal));
         showModal(modal);
+        return modal;
     }
 
     function showModal(modal) {
@@ -83,31 +88,38 @@ let ModalsJs = (function () {
         }
     }
 
-    function warn(warningOptions, modal) {
-        let html = warningOptions.custom ||
-               ("<b class='modalsjs-warning-text'>" + (warningOptions.sure || _warning.sure) + "</b>" +
-                "<button class='modalsjs-warning-yes'>" + (warningOptions.yes || _warning.yes) + "</button>" +
-                "<button class='modalsjs-warning-no'>" + (warningOptions.no || _warning.no) + "</button>");
+    function prompt(promptOptions, onAccept, onReject) {
+        let html = promptOptions.custom ||
+            ("<b class='modalsjs-warning-text'>" + (promptOptions.title || _warning.title) + "</b>" +
+                "<button class='modalsjs-warning-yes'>" + (promptOptions.accept || _warning.accept) + "</button>" +
+                "<button class='modalsjs-warning-no'>" + (promptOptions.reject || _warning.reject) + "</button>");
         let element = createElement("div", "modalsjs-view modalsjs-shadow modalsjs-bgc", html);
         let warning = { type: "warning", element };
         element.addEventListener("click", (ev) => {
             if (ev.target.matches(".modalsjs-warning-yes")){
                 modalContainer.removeChild(element);
                 removeModalFromStack(warning);
-                close(true, modal);
+                onAccept();
             }
             else if (ev.target.matches(".modalsjs-warning-no")){
                 modalContainer.removeChild(element);
                 removeModalFromStack(warning);
+                onReject();
             }
         });
         modalStack.push(warning);
         modalContainer.appendChild(element);
     }
 
+    function onCloseWarning(warningOptions, modal) {
+        prompt(warningOptions, () => {
+            close(true, modal);
+        });
+    }
+
     function handleOptions(ignoreWarning, modal) {
         if (ignoreWarning !== true && modal.options && modal.options.warning){
-            warn(modal.options.warningOptions || _warning, modal);
+            onCloseWarning(modal.options.warningOptions || _warning, modal);
             return false;
         }
         if (modal.options && modal.options.onClose)
@@ -142,6 +154,7 @@ let ModalsJs = (function () {
         openImage,
         close,
         closeAll,
+        prompt,
         initPopupImages
     }
 })();

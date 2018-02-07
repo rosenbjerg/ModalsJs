@@ -18,8 +18,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="208">
-                <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <first_editor relative-caret-position="288">
+                <caret line="18" column="67" lean-forward="false" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -30,8 +30,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+            <state relative-caret-position="320">
+              <caret line="20" column="57" lean-forward="false" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -40,24 +40,9 @@
       <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+            <state relative-caret-position="96">
+              <caret line="6" column="52" lean-forward="false" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="modals.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/modals.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="34" column="42" lean-forward="false" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
-              <folding>
-                <element signature="e#2370#2494#0" expanded="false" />
-                <element signature="e#2539#2698#0" expanded="false" />
-                <element signature="e#2741#2938#0" expanded="false" />
-                <element signature="e#2981#4036#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -65,8 +50,8 @@
       <file leaf-file-name="modals.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modals.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+            <state relative-caret-position="768">
+              <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -78,6 +63,26 @@
             <state relative-caret-position="176">
               <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modals.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/modals.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="13" column="46" lean-forward="true" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+              <folding>
+                <element signature="e#1749#2321#0" expanded="false" />
+                <element signature="e#2562#2686#0" expanded="false" />
+                <element signature="e#2731#2890#0" expanded="false" />
+                <element signature="e#2933#3130#0" expanded="false" />
+                <element signature="e#3187#4271#0" expanded="false" />
+                <element signature="e#4324#4414#0" expanded="false" />
+                <element signature="e#4465#4774#0" expanded="false" />
+                <element signature="e#4817#5291#0" expanded="false" />
+                <element signature="e#5317#5515#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,7 +105,12 @@
       <find>undefi</find>
       <find>===</find>
       <find>conso</find>
+      <find>sure:</find>
     </findStrings>
+    <replaceStrings>
+      <replace>accept</replace>
+      <replace>.title</replace>
+    </replaceStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -111,10 +121,10 @@
         <option value="$PROJECT_DIR$/modals.js" />
         <option value="$PROJECT_DIR$/Gruntfile.js" />
         <option value="$PROJECT_DIR$/build/transpiled/modals.min.js" />
-        <option value="$PROJECT_DIR$/src/modals.css" />
         <option value="$PROJECT_DIR$/demo/test.html" />
-        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/modals.css" />
         <option value="$PROJECT_DIR$/demo/main.js" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/modals.js" />
       </list>
     </option>
@@ -149,8 +159,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,6 +191,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,31 +236,39 @@
       <workItem from="1516290453551" duration="5101000" />
       <workItem from="1516366110424" duration="1809000" />
       <workItem from="1516805616117" duration="189000" />
+      <workItem from="1516818788064" duration="1025000" />
+      <workItem from="1516825830696" duration="9000" />
+      <workItem from="1516830609929" duration="22000" />
+      <workItem from="1517712045992" duration="126000" />
+      <workItem from="1517743123428" duration="603000" />
+      <workItem from="1517961314113" duration="2561000" />
+      <workItem from="1517999063073" duration="276000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49051000" />
+    <option name="totallyTimeSpent" value="53673000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1186" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -259,11 +277,45 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/modals.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modals.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="34" column="42" lean-forward="false" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+          <folding>
+            <element signature="e#1749#2321#0" expanded="false" />
+            <element signature="e#2562#2686#0" expanded="false" />
+            <element signature="e#2731#2890#0" expanded="false" />
+            <element signature="e#2933#3130#0" expanded="false" />
+            <element signature="e#3187#4271#0" expanded="false" />
+            <element signature="e#4324#4414#0" expanded="false" />
+            <element signature="e#4465#4774#0" expanded="false" />
+            <element signature="e#4817#5291#0" expanded="false" />
+            <element signature="e#5317#5515#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -296,10 +348,15 @@
         <state relative-caret-position="144">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
-            <element signature="e#2370#2494#0" expanded="false" />
-            <element signature="e#2539#2698#0" expanded="false" />
-            <element signature="e#2741#2938#0" expanded="false" />
-            <element signature="e#2981#4036#0" expanded="false" />
+            <element signature="e#1749#2321#0" expanded="false" />
+            <element signature="e#2562#2686#0" expanded="false" />
+            <element signature="e#2731#2890#0" expanded="false" />
+            <element signature="e#2933#3130#0" expanded="false" />
+            <element signature="e#3187#4271#0" expanded="false" />
+            <element signature="e#4324#4414#0" expanded="false" />
+            <element signature="e#4465#4774#0" expanded="false" />
+            <element signature="e#4817#5291#0" expanded="false" />
+            <element signature="e#5317#5515#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -352,10 +409,15 @@
         <state relative-caret-position="144">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
-            <element signature="e#2370#2494#0" expanded="false" />
-            <element signature="e#2539#2698#0" expanded="false" />
-            <element signature="e#2741#2938#0" expanded="false" />
-            <element signature="e#2981#4036#0" expanded="false" />
+            <element signature="e#1749#2321#0" expanded="false" />
+            <element signature="e#2562#2686#0" expanded="false" />
+            <element signature="e#2731#2890#0" expanded="false" />
+            <element signature="e#2933#3130#0" expanded="false" />
+            <element signature="e#3187#4271#0" expanded="false" />
+            <element signature="e#4324#4414#0" expanded="false" />
+            <element signature="e#4465#4774#0" expanded="false" />
+            <element signature="e#4817#5291#0" expanded="false" />
+            <element signature="e#5317#5515#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -400,10 +462,15 @@
         <state relative-caret-position="800">
           <caret line="50" column="47" lean-forward="true" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="60" />
           <folding>
-            <element signature="e#2370#2494#0" expanded="false" />
-            <element signature="e#2539#2698#0" expanded="false" />
-            <element signature="e#2741#2938#0" expanded="false" />
-            <element signature="e#2981#4036#0" expanded="false" />
+            <element signature="e#1749#2321#0" expanded="false" />
+            <element signature="e#2562#2686#0" expanded="false" />
+            <element signature="e#2731#2890#0" expanded="false" />
+            <element signature="e#2933#3130#0" expanded="false" />
+            <element signature="e#3187#4271#0" expanded="false" />
+            <element signature="e#4324#4414#0" expanded="false" />
+            <element signature="e#4465#4774#0" expanded="false" />
+            <element signature="e#4817#5291#0" expanded="false" />
+            <element signature="e#5317#5515#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -472,10 +539,15 @@
         <state relative-caret-position="1040">
           <caret line="132" column="5" lean-forward="true" selection-start-line="132" selection-start-column="5" selection-end-line="132" selection-end-column="5" />
           <folding>
-            <element signature="e#2370#2494#0" expanded="false" />
-            <element signature="e#2539#2698#0" expanded="false" />
-            <element signature="e#2741#2938#0" expanded="false" />
-            <element signature="e#2981#4036#0" expanded="false" />
+            <element signature="e#1749#2321#0" expanded="false" />
+            <element signature="e#2562#2686#0" expanded="false" />
+            <element signature="e#2731#2890#0" expanded="false" />
+            <element signature="e#2933#3130#0" expanded="false" />
+            <element signature="e#3187#4271#0" expanded="false" />
+            <element signature="e#4324#4414#0" expanded="false" />
+            <element signature="e#4465#4774#0" expanded="false" />
+            <element signature="e#4817#5291#0" expanded="false" />
+            <element signature="e#5317#5515#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -520,10 +592,15 @@
         <state relative-caret-position="1040">
           <caret line="132" column="5" lean-forward="true" selection-start-line="132" selection-start-column="5" selection-end-line="132" selection-end-column="5" />
           <folding>
-            <element signature="e#2370#2494#0" expanded="false" />
-            <element signature="e#2539#2698#0" expanded="false" />
-            <element signature="e#2741#2938#0" expanded="false" />
-            <element signature="e#2981#4036#0" expanded="false" />
+            <element signature="e#1749#2321#0" expanded="false" />
+            <element signature="e#2562#2686#0" expanded="false" />
+            <element signature="e#2731#2890#0" expanded="false" />
+            <element signature="e#2933#3130#0" expanded="false" />
+            <element signature="e#3187#4271#0" expanded="false" />
+            <element signature="e#4324#4414#0" expanded="false" />
+            <element signature="e#4465#4774#0" expanded="false" />
+            <element signature="e#4817#5291#0" expanded="false" />
+            <element signature="e#5317#5515#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -551,52 +628,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/transpiled/modals.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/build/transpiled/modals.min.css" />
     <entry file="file://$PROJECT_DIR$/build/transpiled/modals.min.min.js" />
-    <entry file="file://$PROJECT_DIR$/build/transpiled/modals.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1470">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/transpiled/modals.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="1" column="30" lean-forward="true" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modals.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/build/transpiled/modals.min.js" />
     <entry file="file://$PROJECT_DIR$/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -605,11 +639,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build/transpiled/modals.js" />
+    <entry file="file://$PROJECT_DIR$/demo/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="52" lean-forward="false" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modals.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="20" column="57" lean-forward="false" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="208">
-            <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <first_editor relative-caret-position="288">
+            <caret line="18" column="67" lean-forward="false" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
             <folding />
           </first_editor>
           <second_editor />
@@ -618,13 +677,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/modals.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="34" column="42" lean-forward="false" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+        <state relative-caret-position="208">
+          <caret line="13" column="46" lean-forward="true" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
           <folding>
-            <element signature="e#2370#2494#0" expanded="false" />
-            <element signature="e#2539#2698#0" expanded="false" />
-            <element signature="e#2741#2938#0" expanded="false" />
-            <element signature="e#2981#4036#0" expanded="false" />
+            <element signature="e#1749#2321#0" expanded="false" />
+            <element signature="e#2562#2686#0" expanded="false" />
+            <element signature="e#2731#2890#0" expanded="false" />
+            <element signature="e#2933#3130#0" expanded="false" />
+            <element signature="e#3187#4271#0" expanded="false" />
+            <element signature="e#4324#4414#0" expanded="false" />
+            <element signature="e#4465#4774#0" expanded="false" />
+            <element signature="e#4817#5291#0" expanded="false" />
+            <element signature="e#5317#5515#0" expanded="false" />
           </folding>
         </state>
       </provider>
