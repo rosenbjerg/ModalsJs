@@ -2,7 +2,7 @@
 
 let ModalsJs = (function () {
     let modalStack = [];
-    let _warning = {
+    const DEFAULT_WARNING = {
         title: "Are you sure you want to close this window?",
         accept: "Yes",
         reject: "No"
@@ -88,38 +88,39 @@ let ModalsJs = (function () {
         }
     }
 
-    function prompt(promptOptions, onAccept, onReject) {
-        let html = promptOptions.custom ||
-            ("<b class='modalsjs-warning-text'>" + (promptOptions.title || _warning.title) + "</b>" +
-                "<button class='modalsjs-warning-yes'>" + (promptOptions.accept || _warning.accept) + "</button>" +
-                "<button class='modalsjs-warning-no'>" + (promptOptions.reject || _warning.reject) + "</button>");
-        let element = createElement("div", "modalsjs-view modalsjs-shadow modalsjs-bgc", html);
-        let warning = { type: "warning", element };
-        element.addEventListener("click", (ev) => {
-            if (ev.target.matches(".modalsjs-warning-yes")){
-                modalContainer.removeChild(element);
-                removeModalFromStack(warning);
-                onAccept();
-            }
-            else if (ev.target.matches(".modalsjs-warning-no")){
-                modalContainer.removeChild(element);
-                removeModalFromStack(warning);
-                onReject();
-            }
+    function prompt(promptOptions) {
+        return new Promise((res, rej) => {
+            let html = promptOptions.custom ||
+                ("<b class='modalsjs-warning-text'>" + (promptOptions.title || DEFAULT_WARNING.title) + "</b>" +
+                    "<button class='modalsjs-warning-yes'>" + (promptOptions.accept || DEFAULT_WARNING.accept) + "</button>" +
+                    "<button class='modalsjs-warning-no'>" + (promptOptions.reject || DEFAULT_WARNING.reject) + "</button>");
+            let element = createElement("div", "modalsjs-view modalsjs-shadow modalsjs-bgc", html);
+            let warning = { type: "warning", element };
+            element.addEventListener("click", (ev) => {
+                if (ev.target.matches(".modalsjs-warning-yes")){
+                    modalContainer.removeChild(element);
+                    removeModalFromStack(warning);
+                    res(true);
+                }
+                else if (ev.target.matches(".modalsjs-warning-no")){
+                    modalContainer.removeChild(element);
+                    removeModalFromStack(warning);
+                    res(false);
+                }
+            });
+            modalStack.push(warning);
+            modalContainer.appendChild(element);
         });
-        modalStack.push(warning);
-        modalContainer.appendChild(element);
+
     }
 
     function onCloseWarning(warningOptions, modal) {
-        prompt(warningOptions, () => {
-            close(true, modal);
-        });
+        prompt(warningOptions).then(answer => { if (answer) close(true, modal) });
     }
 
     function handleOptions(ignoreWarning, modal) {
         if (ignoreWarning !== true && modal.options && modal.options.warning){
-            onCloseWarning(modal.options.warningOptions || _warning, modal);
+            onCloseWarning(modal.options.warningOptions || DEFAULT_WARNING, modal);
             return false;
         }
         if (modal.options && modal.options.onClose)
