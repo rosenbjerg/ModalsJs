@@ -7,6 +7,20 @@ let ModalsJs = (function () {
         accept: "Yes",
         reject: "No"
     };
+    const CLASS = {
+        BGC: "modalsjs-bgc",
+        VIEW: "modalsjs-view",
+        IMAGE: "modalsjs-image",
+        CONTENT: "modalsjs-content",
+        GALLERY: "modalsjs-gallery",
+        SHADOW: "modalsjs-shadow",
+        IMG_TITLE: "modalsjs-image-title",
+        IMG_DESC: "modalsjs-image-desc",
+        CLOSE_BTN: "modalsjs-closebutton",
+        WARN_TEXT: "modalsjs-warning-text",
+        WARN_YES: "modalsjs-warning-yes",
+        WARN_NO: "modalsjs-warning-no",
+    };
 
     let modalContainer = createElement("div", "modalsjs-container");
     let modalBackBlur = createElement("div", "modalsjs-backblur");
@@ -16,43 +30,105 @@ let ModalsJs = (function () {
     function initPopupImages(container, options) {
         let images = Array.from(container.getElementsByTagName("img"))
                         .filter(el => el.matches(".modalsjs-popupimage"));
-        for (let i = 0; i < images.length; i++){
-            images[i].addEventListener("click", ev => {
-                let imgSrc = ev.target.dataset.imgSrc || ev.target.src;
-                openImage(imgSrc, ev.target.dataset.imgTitle, ev.target.dataset.imgDesc);
-            })
+
+        if (options && options.gallery){
+            for (let i = 0; i < images.length; i++){
+                images[i].addEventListener("click", ev => openGalleryImage(i, images));
+            }
+        }
+        else {
+            for (let i = 0; i < images.length; i++){
+                images[i].addEventListener("click", ev =>
+                    openImage(ev.target.dataset.imgSrc || ev.target.src, ev.target.dataset.imgTitle, ev.target.dataset.imgDesc));
+            }
         }
 
     }
 
+    function openGalleryImage(i, images) {
+        let img = createElement("img", `${CLASS.IMAGE} ${CLASS.GALLERY} ${CLASS.SHADOW}`);
+        img.tabIndex = 0;
+        let caption = createElement("figcaption");
+        let title = createElement("div", CLASS.IMG_TITLE);
+        let desc = createElement("div", CLASS.IMG_DESC);
+        let nav = createElement("div", "modalsjs-gallery-nav");
+        let left = createElement("b", "modalsjs-gallery-left");
+        let right = createElement("b", "modalsjs-gallery-right");
+        let no = createElement("span");
+        nav.appendChild(left);
+        nav.appendChild(no);
+        nav.appendChild(right);
+        caption.appendChild(title);
+        caption.appendChild(desc);
+
+        const setImg = (newI) => {
+            let image = images[newI];
+            img.title = image.dataset.imgTitle || "";
+            img.src = image.dataset.imgSrc || image.src;
+            title.innerText = image.dataset.imgTitle || "";
+            desc.innerText = image.dataset.imgDesc || "";
+            no.innerText = `${newI+1}/${images.length}`;
+        };
+
+        setImg(i, images);
+
+        let figure = createElement("figure", CLASS.VIEW);
+        figure.appendChild(nav);
+        figure.appendChild(img);
+        figure.appendChild(caption);
+        img.addEventListener("keydown", ev => {
+            switch (ev.keyCode){
+                case 37: modal.prev(); break;
+                case 39: modal.next(); break;
+                case 27: close(false, modal); break;
+            }
+        });
+        let modal = { type: "modal", element: figure };
+        modal.prev = () => { if (i > 0) setImg(--i, images) };
+        modal.next = () => { if (i < images.length - 1) setImg(++i, images) };
+        img.addEventListener("click", () => close(true, modal));
+        left.addEventListener("click", modal.prev);
+        right.addEventListener("click", modal.next);
+        showModal(modal);
+        img.focus();
+        return modal;
+    }
+
     function open(html, options) {
-        let element = createElement("div", "modalsjs-view modalsjs-shadow modalsjs-bgc");
+        let element = createElement("div", `${CLASS.VIEW} ${CLASS.SHADOW} ${CLASS.BGC}`);
         let modal = { type: "modal", element, options };
 
         if (!options || !options.hideClose){
-            let closeBtn = createElement("div", "modalsjs-closebutton", "\u2716");
+            let closeBtn = createElement("div", CLASS.CLOSE_BTN, "\u2716");
             closeBtn.addEventListener("click", () => close(false, modal));
-            element.appendChild(closeBtn);
+            closeBtn.style.position = "absolute";
+
+            let closeBtnWrapper = createElement("div");
+            closeBtnWrapper.style.position = "relative";
+            closeBtnWrapper.style.float = "right";
+            closeBtnWrapper.appendChild(closeBtn);
+            element.appendChild(closeBtnWrapper);
         }
-        let content = createElement("div", "modalsjs-content");
+        let content = createElement("div", CLASS.CONTENT);
         content.innerHTML = html;
         element.appendChild(content);
         showModal(modal);
-        let focusTarget = element.querySelector("input,select,textarea");
-        if (focusTarget)
-            focusTarget.focus();
+        if (!options || options.autofocus !== false){
+            let focusTarget = element.querySelector("input,select,textarea");
+            if (focusTarget) focusTarget.focus();
+        }
         return modal;
     }
 
     function openImage(src, title, desc) {
-        let html = `<img class="modalsjs-image modalsjs-shadow" src='${src}' alt='${title || ""}'><figcaption>`;
+        let html = `<img class="${CLASS.IMAGE} ${CLASS.SHADOW}" src='${src}' alt='${title || ""}'><figcaption>`;
         if (title)
-            html += `<div class='modalsjs-image-title'>${title}</div>`;
+            html += `<div class='${CLASS.IMG_TITLE}'>${title}</div>`;
         if (desc)
-            html += `<small class='modalsjs-image-desc'>${desc}</small>`;
+            html += `<small class='${CLASS.IMG_DESC}'>${desc}</small>`;
         html += "</figcaption>";
 
-        let element = createElement("figure", "modalsjs-view", html);
+        let element = createElement("figure", CLASS.VIEW, html);
         let modal = { type: "modal", element };
         element.addEventListener("click", () => close(true, modal));
         showModal(modal);
@@ -74,7 +150,7 @@ let ModalsJs = (function () {
 
     function createElement(tag, cls, html) {
         let element = document.createElement(tag);
-        element.className = cls;
+        element.className = cls || "";
         if (html) element.innerHTML = html;
         return element;
     }
@@ -91,18 +167,18 @@ let ModalsJs = (function () {
     function prompt(promptOptions) {
         return new Promise((res, rej) => {
             let html = promptOptions.custom ||
-                ("<b class='modalsjs-warning-text'>" + (promptOptions.title || DEFAULT_WARNING.title) + "</b>" +
-                    "<button class='modalsjs-warning-yes'>" + (promptOptions.accept || DEFAULT_WARNING.accept) + "</button>" +
-                    "<button class='modalsjs-warning-no'>" + (promptOptions.reject || DEFAULT_WARNING.reject) + "</button>");
-            let element = createElement("div", "modalsjs-view modalsjs-shadow modalsjs-bgc", html);
+                (`<b class='${CLASS.WARN_TEXT}'>` + (promptOptions.title || DEFAULT_WARNING.title) + "</b>" +
+                    `<button class='${CLASS.WARN_YES}'>` + (promptOptions.accept || DEFAULT_WARNING.accept) + "</button>" +
+                    `<button class='${CLASS.WARN_NO}'>` + (promptOptions.reject || DEFAULT_WARNING.reject) + "</button>");
+            let element = createElement("div", `${CLASS.VIEW} ${CLASS.SHADOW} ${CLASS.BGC}`, html);
             let warning = { type: "warning", element };
             element.addEventListener("click", (ev) => {
-                if (ev.target.matches(".modalsjs-warning-yes")){
+                if (ev.target.matches('.' + CLASS.WARN_YES)){
                     modalContainer.removeChild(element);
                     removeModalFromStack(warning);
                     res(true);
                 }
-                else if (ev.target.matches(".modalsjs-warning-no")){
+                else if (ev.target.matches('.' + CLASS.WARN_NO)){
                     modalContainer.removeChild(element);
                     removeModalFromStack(warning);
                     res(false);

@@ -27,26 +27,36 @@
 figure.modalsjs-view {
     margin: 0;
 }
-
 .modalsjs-shadow {
     -webkit-box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
     -moz-box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
     box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
 }
-
 .modalsjs-image {
     display: block;
     cursor: zoom-out;
     margin: auto auto 5px;
     border-radius: 2px;
 }
+.modalsjs-image:focus {
+    outline: none;
+}
+.modalsjs-image.modalsjs-gallery:before {
+    content: '〈';
+    font-size: 20pt;
+}
+.modalsjs-image.modalsjs-gallery:after {
+    content: '〉';
+    font-size: 20pt;
+}
+
 .modalsjs-image-title, .modalsjs-image-desc {
     color: #F3F3F3;
 }
 
 .modalsjs-closebutton {
     margin-top: -5px;
-    margin-right: -5px;
+    margin-left: -10px;
     color: #9E9E9E;
     float: right;
     cursor: pointer;
@@ -83,4 +93,25 @@ figure.modalsjs-view {
 
 .modalsjs-popupimage {
     cursor: pointer;
+}
+.modalsjs-gallery-left, .modalsjs-gallery-right {
+    cursor: pointer;
+}
+.modalsjs-gallery-left:after{
+    content: '〈';
+}
+.modalsjs-gallery-right:after {
+    content: '〉';
+}
+.modalsjs-gallery-nav {
+    width: 100%;
+    text-align: center;
+}
+.modalsjs-gallery-nav > * {
+    display: inline;
+    color: #F3F3F3;
+}
+.modalsjs-gallery-nav > span {
+    margin-left: 8px;
+    margin-right: 8px;
 }
