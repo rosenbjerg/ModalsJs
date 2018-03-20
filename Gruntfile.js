@@ -1,47 +1,60 @@
 module.exports = function(grunt) {
-
     grunt.initConfig({
         babel: {
             options: {
-                "sourceMap": true
+                sourceMap: true
             },
             dist: {
-                files: [{
-                    "expand": true,
-                    "cwd": "src",
-                    "src": ["*.js", "!*.min.js"],
-                    "dest": "build/transpiled",
-                    "ext": ".js"
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src',
+                        src: ['*.js'],
+                        dest: 'dist'
+                    }
+                ]
             }
         },
         uglify: {
-            dev: {
-                options: {
-                    sourceMap: true,
-                    compress: true,
-                    mangle: true,
-
-                },
+            options: {
+                sourceMap: true,
+                compress: true,
+                mangle: true
+            },
+            dist: {
                 files: [{
                     expand: true,
-                    src: 'build/transpiled/*.js',
-                    dest: '.',
-                    cwd: '.',
-                    rename: function (dst, src) {
-                        // To keep src js files and make new files as *.min.js :
-                        return dst + '/' + src.replace('.js', '.min.js');
-                    }
+                    cwd: 'dist',
+                    src: ['*.js', '!*.min.js'],
+                    ext: '.min.js',
+                    dest: 'dist',
+                }]
+            }
+        },
+        sass: {
+            options: {
+                sourceMap: true,
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: 'src',
+                    src: ['*.scss'],
+                    dest: 'dist',
+                    ext: '.css'
                 }]
             }
         },
         cssmin: {
-            target: {
+            options: {
+                sourceMap: true,
+            },
+            dist: {
                 files: [{
                     expand: true,
-                    cwd: 'src',
+                    cwd: 'dist',
                     src: ['*.css', '!*.min.css'],
-                    dest: 'build/transpiled',
+                    dest: 'dist',
                     ext: '.min.css'
                 }]
             }
@@ -49,7 +62,8 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.registerTask("default", ["babel", "uglify", "cssmin"]);
+    grunt.registerTask("default", ["babel", "uglify", "sass", "cssmin"]);
 };

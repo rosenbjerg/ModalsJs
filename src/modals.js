@@ -1,6 +1,6 @@
 "use strict";
 
-let ModalsJs = (function () {
+const ModalsJs = (function () {
     let modalStack = [];
     const DEFAULT_WARNING = {
         title: "Are you sure you want to close this window?",
@@ -22,14 +22,26 @@ let ModalsJs = (function () {
         WARN_NO: "modalsjs-warning-no",
     };
 
+    class Modal {
+        constructor(element, options) {
+            this.element = element;
+            this.options = options;
+            this.close = this.close.bind(this);
+        }
+
+        close(ignoreWarning) {
+            closeModal(ignoreWarning, this);
+        }
+    }
+
     let modalContainer = createElement("div", "modalsjs-container");
     let modalBackBlur = createElement("div", "modalsjs-backblur");
-    modalBackBlur.addEventListener("click", () => close());
+    modalBackBlur.addEventListener("click", () => closeModal());
     modalContainer.appendChild(modalBackBlur);
 
     function initPopupImages(container, options) {
         let images = Array.from(container.getElementsByTagName("img"))
-                        .filter(el => el.matches(".modalsjs-popupimage"));
+            .filter(el => el.matches(".modalsjs-popupimage"));
         for (let i = 0; i < images.length; i++){
             images[i].addEventListener("click", options && options.gallery
                 ? () => openGalleryImage(i, images)
@@ -70,13 +82,13 @@ let ModalsJs = (function () {
             switch (ev.keyCode){
                 case 37: modal.prev(); break;
                 case 39: modal.next(); break;
-                case 27: close(false, modal); break;
+                case 27: closeModal(false, modal); break;
             }
         });
-        let modal = { element: figure };
+        let modal = new Modal(figure);
         modal.prev = () => { if (i > 0) setImg(--i, images) };
         modal.next = () => { if (i < images.length - 1) setImg(++i, images) };
-        img.addEventListener("click", () => close(true, modal));
+        img.addEventListener("click", () => closeModal(true, modal));
         left.addEventListener("click", modal.prev);
         right.addEventListener("click", modal.next);
         showModal(modal);
@@ -86,11 +98,11 @@ let ModalsJs = (function () {
 
     function open(html, options) {
         let element = createElement("div", `${CLASS.VIEW} ${CLASS.SHADOW} ${CLASS.BGC}`);
-        let modal = { element, options };
+        let modal = new Modal(element, options);
 
         if (!options || !options.hideClose){
             let closeBtn = createElement("div", CLASS.CLOSE_BTN, "\u2716");
-            closeBtn.addEventListener("click", () => close(false, modal));
+            closeBtn.addEventListener("click", () => closeModal(false, modal));
             closeBtn.style.position = "absolute";
 
             let closeBtnWrapper = createElement("div");
@@ -117,8 +129,8 @@ let ModalsJs = (function () {
         html += "</figcaption>";
 
         let element = createElement("figure", CLASS.VIEW, html);
-        let modal = { element };
-        element.addEventListener("click", () => close(true, modal));
+        let modal = new Modal(element) ;
+        element.addEventListener("click", () => closeModal(true, modal));
         showModal(modal);
         return modal;
     }
@@ -161,7 +173,7 @@ let ModalsJs = (function () {
                     `<button class='${CLASS.WARN_YES}'>` + (promptOptions.accept || DEFAULT_WARNING.accept) + "</button>" +
                     `<button class='${CLASS.WARN_NO}'>` + (promptOptions.reject || DEFAULT_WARNING.reject) + "</button>");
             let element = createElement("div", `${CLASS.VIEW} ${CLASS.SHADOW} ${CLASS.BGC}`, html);
-            let warning = { element };
+            let warning = new Modal(element);
             element.addEventListener("click", (ev) => {
                 if (ev.target.matches('.' + CLASS.WARN_YES)){
                     removeModal(warning);
@@ -178,7 +190,7 @@ let ModalsJs = (function () {
     }
 
     function onCloseWarning(warningOptions, modal) {
-        prompt(warningOptions).then(answer => { if (answer) close(true, modal) });
+        prompt(warningOptions).then(answer => { if (answer) closeModal(true, modal) });
     }
 
     function handleOptions(ignoreWarning, modal) {
@@ -191,7 +203,7 @@ let ModalsJs = (function () {
         return true;
     }
 
-    function close(ignoreWarning, modal) {
+    function closeModal(ignoreWarning, modal) {
         modal = modal || peekModal();
         if (modal && handleOptions(ignoreWarning, modal)) removeModal(modal);
     }
@@ -202,13 +214,14 @@ let ModalsJs = (function () {
         document.body.removeChild(modalContainer);
         modalStack = [];
     }
-
     return {
-        open,
-        openImage,
-        close,
-        closeAll,
-        prompt,
-        initPopupImages
-    }
+        open: open,
+        openImage: openImage,
+        close: closeModal,
+        closeAll: closeAll,
+        prompt: prompt,
+        initPopupImages: initPopupImages
+    };
 })();
+
+module.exports = ModalsJs;

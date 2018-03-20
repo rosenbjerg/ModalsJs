@@ -28,8 +28,6 @@ figure.modalsjs-view {
     margin: 0;
 }
 .modalsjs-shadow {
-    -webkit-box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
-    -moz-box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
     box-shadow: 0 0 24px 0 rgba(0,0,0,0.75);
 }
 .modalsjs-image {
@@ -37,17 +35,19 @@ figure.modalsjs-view {
     cursor: zoom-out;
     margin: auto auto 5px;
     border-radius: 2px;
-}
-.modalsjs-image:focus {
-    outline: none;
-}
-.modalsjs-image.modalsjs-gallery:before {
-    content: '〈';
-    font-size: 20pt;
-}
-.modalsjs-image.modalsjs-gallery:after {
-    content: '〉';
-    font-size: 20pt;
+    :focus {
+        outline: none;
+    }
+    .modalsjs-gallery {
+        font-size: 20pt;
+        color: #fafafa;
+        :before {
+            content: '〈';
+        }
+        :after {
+            content: '〉';
+        }
+    }
 }
 
 .modalsjs-image-title, .modalsjs-image-desc {
@@ -67,11 +67,10 @@ figure.modalsjs-view {
     transition: background-color 150ms;
     font-size: 1.2rem;
     line-height: 1.2rem;
-}
-
-.modalsjs-closebutton:hover{
-    transition: color 200ms;
-    color: #616161;
+    :hover {
+        transition: color 200ms;
+        color: #616161;
+    }
 }
 
 .modalsjs-warning-text {
@@ -106,12 +105,12 @@ figure.modalsjs-view {
 .modalsjs-gallery-nav {
     width: 100%;
     text-align: center;
-}
-.modalsjs-gallery-nav > * {
-    display: inline;
-    color: #F3F3F3;
-}
-.modalsjs-gallery-nav > span {
-    margin-left: 8px;
-    margin-right: 8px;
+    > * {
+        display: inline;
+        color: #F3F3F3;
+    }
+    > span {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
 }
